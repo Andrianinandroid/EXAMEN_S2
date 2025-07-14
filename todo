@@ -31,3 +31,14 @@ Version 2
         -info membre
         -objet du membre (par categorie)
     
+
+    v3
+    commit ap 30min
+
+    liste obj 
+    => ajout bouton emprunter
+        -> page: formulaire 
+            combien de jours 
+            valider
+        mis a jour 
+            -lasa hoe dispo le ...

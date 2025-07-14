@@ -62,9 +62,10 @@ $l_cat = get_list_categorie();
 <div class="container mt-5">
     <h1 class="text-center mb-4">Liste des objets</h1>
     <div class="row">
-        <?php if (!empty($objets)) {
+        <?php 
+        if (!empty($objets)) {
             foreach ($objets as $object) {
-                $image = !empty($object['nom_image']) ? "../assets/images/objets/" . $object['nom_image'] : "../assets/images/default.jpg";
+                $image = !empty($object['nom_image']) ? "../assets/images/objets/" . $object['nom_image'] : "../assets/images/img3.jpg";
                 ?>
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm">
@@ -75,11 +76,15 @@ $l_cat = get_list_categorie();
                             <p class="card-text"><strong>Propriétaire :</strong> <?= htmlspecialchars($object['nom']) ?></p>
                             <p class="card-text"><strong>Catégorie :</strong> <?= htmlspecialchars($object['nom_categorie']) ?></p>
 
-                            <?php if (est_emprunte($object)) {
+                            <?php 
+                                $duree = get_date_dispo($object['id_objet']);
+                            if (est_emprunte($object)) {
+
                                 $info_emprunt = get_info_emprunt($object['id_objet']);
                                 foreach ($info_emprunt as $info) { ?>
                                     <p class="text-danger">
-                                        <strong>Date de retour :</strong> <?= htmlspecialchars($info['date_retour']) ?>
+                                        
+                                        <strong>Date de retour : </strong> dans  <?= htmlspecialchars($duree) ?> jours
                                     </p>
                                     <button class="btn btn-danger btn-sm" disabled>Indisponible</button>
                                 <?php }
@@ -88,8 +93,12 @@ $l_cat = get_list_categorie();
                                 <button class="btn btn-success btn-sm" disabled>Disponible</button>
                             <?php } ?>
 
+                            <a href="emprunt.php?id=<?= $object['id_objet'] ?>">
+                            <button class="btn btn-success btn-sm" disabled>Emprunter</button>
+                            </a>
+
                             <!-- Bouton Voir détails -->
-                            <a href="details.php?obj=<?= $object['id_objet'] ?>" class="btn btn-outline-primary btn-sm mt-2">
+                            <a href="fiche_objet.php?obj=<?= $object['id_objet'] ?>" class="btn btn-outline-primary btn-sm mt-2">
                                 Voir détails
                             </a>
                         </div>

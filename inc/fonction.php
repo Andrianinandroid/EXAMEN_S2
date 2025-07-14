@@ -149,4 +149,23 @@ function get_objets_par_id($id){
     $reponse =mysqli_fetch_assoc($envoi);
      return $reponse;
 }
+function get_date_dispo($id){
+    $req = "select datediff(now(), date_retour) from gestion_emprunt where id_objet=%d";
+    $req = sprintf($req, $id);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $reponse =mysqli_fetch_assoc($envoi);
+     return $reponse['datediff(now(), date_retour)'];
+}
+function emprunter($id_obj, $nbj, $id_mbr) {
+    $req = "insert into gestion_emprunt (id_objet,nom_image,id_membre,date_emprunt) values (%d,null,%d,now(),date_add(now(), interval %d day))";
+    $req = sprintf($req,$id_obj,$id_mbr,$nbj);
+    $envoi = mysqli_query(dbconnect(),$req);
+}
+
+
+// id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
+//     id_objet INT,
+//     id_membre INT,
+//     date_emprunt DATE,
+//     date_retour DATE,
 ?>
