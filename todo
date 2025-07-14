@@ -11,3 +11,23 @@ Version 1
       -page login et inscription
       -liste des objets
       -filtre par categories
+
+Version 2
+    -amelioration du css
+        -maka sary anaky 40 ho an le liste efa ao
+    -upload (par membre connecte)
+        -upload +1 photo
+        -supprimer les images
+        -si il n y a pas d image, => imge par defaut
+    -creation de fiche objet
+        -lien pour chaque objet
+            (img + autres images 
+            + historique emprunt)
+    -liste a modifier
+        -categorie
+        -nom
+        -case a cocher (disponible) 
+    -fiche membre a creer
+        -info membre
+        -objet du membre (par categorie)
+    

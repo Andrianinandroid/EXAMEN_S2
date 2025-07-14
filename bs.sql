@@ -1,7 +1,7 @@
 -- 1. Création de la base de données (facultatif selon votre SGBD)
-drop database gestion_emprunt;
-CREATE DATABASE IF NOT EXISTS gestion_emprunt;
-USE gestion_emprunt;
+-- drop database gestion_emprunt;
+-- CREATE DATABASE IF NOT EXISTS gestion_emprunt;
+-- USE gestion_emprunt;
 
 -- 2. Table gestion_membre
 CREATE TABLE gestion_membre (
@@ -113,10 +113,6 @@ INSERT INTO gestion_objet (nom_objet, id_categorie, id_membre) VALUES
 ('Planche à découper', 4, 4),
 ('Mixeur plongeant', 4, 4),
 ('Brosse à barbe', 1, 4);
-
--- 10. Insertion des images d’objets (1 par objet pour simplifier)
--- INSERT INTO gestion_images_objet (id_objet, nom_image)
--- SELECT id_objet, CONCAT('image_objet_', id_objet, '.jpg') FROM objet;
 
 -- 11. Insertion de 10 emprunts
 INSERT INTO gestion_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
