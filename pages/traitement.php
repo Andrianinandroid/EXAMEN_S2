@@ -1,5 +1,5 @@
 <?php 
-require("../inc/fonctions.php");
+require("../inc/fonction.php");
     if( empty($_GET['mail']) || empty($_GET['nom']) || empty($_GET['motdepasse']) || empty($_GET['naissance'])){
         header("Location:index.php");
             die();

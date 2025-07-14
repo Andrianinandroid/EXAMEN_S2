@@ -6,7 +6,7 @@
         if ($connect === null) {
             // ('localhost','ETU004017','GLgIenZT','db_s2_ETU004017')
             // $connect = mysqli_connect('localhost','ETU004017','GLgIenZT','db_s2_ETU004017');
-            $connect = mysqli_connect('localhost','root','','base');
+            $connect = mysqli_connect('localhost','root','','gestion_emprunt');
     
             if (!$connect) {
                 die('Erreur de connexion à la base de données : ' . mysqli_connect_error());

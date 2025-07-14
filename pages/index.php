@@ -11,14 +11,15 @@
         <div class="corps">
         <form action="traitement.php" method="get">
             <div class="entete">
-                <h1><i>Mini-Réseaux</i></h1>
-                <h5> Inscrivez-vous pour voir les publications de vos ami(e)s</h5>
+                <h1><i>Site d'emprunt</i></h1>
+               
             </div>
         <hr>
             <div class="formulaire">
                 <p><input type="email" name="mail" placeholder="Adresse e-mail"></p>
                 <p>Date de naissance: <input type="date" name="naissance"></p>
                 <p><input type="text" name="nom" placeholder="Nom d'utilisateur"></p>
+                <p><input type="text" name="ville" placeholder="Ville"></p>
                 <p><input type="password" name="motdepasse" placeholder="Nouveau mot de passe"></p>
             </div>            
             <div class="submit">

@@ -1,5 +1,5 @@
 <?php 
-require("../inc/fonctions.php");
+require("../inc/fonction.php");
     if(!verify_user($_GET['mail'],$_GET['motdepasse'])){
         header("Location:login.php?erreur=1");
     }

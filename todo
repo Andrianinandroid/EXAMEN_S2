@@ -5,6 +5,9 @@ Version 1
         objet
         images_objet
         emprunt
-        
+
     -insertion des donnees
     -creation des pages
+      -page login et inscription
+      -liste des objets
+      -filtre par categories
