@@ -104,9 +104,9 @@ function upload($id_categorie,$nom_objet,$id_membre){
     $maxSize = 20 * 1024 * 1024; // 20 Mo
     $allowedMimeTypes = ['image/jpeg', 'image/png'];
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photos'])) {
-        $file = $_FILES['photos'];
-        foreach($_FILES['photos'] as $file){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['fichier'])) {
+        $file = $_FILES['fichier'];
+       
             // $file = $_FILES['fichier'];
             if ($file['error'] !== UPLOAD_ERR_OK) {
                 die('Erreur lors de l’upload : ' . $file['error']);
@@ -135,7 +135,7 @@ function upload($id_categorie,$nom_objet,$id_membre){
       insert_image($id_objet,$newName);
         }
      
-    } else {
+     else {
         echo "Aucun fichier reçu.";
     }
 

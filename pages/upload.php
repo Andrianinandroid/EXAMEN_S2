@@ -29,7 +29,7 @@ $categories = get_list_categorie();?>
       </div>
       <div class="form-group">
         <label for="media">Images de l'objet</label>
-        <input type="file" id="media" name="photos[]" accept="image/*" multiple>
+        <input type="file" id="media" name="fichier" accept="image/*" required>
       </div>
       <button type="submit" class="btn-upload">Publier</button>
     </form>

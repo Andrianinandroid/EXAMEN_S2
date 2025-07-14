@@ -2,22 +2,22 @@
 require("../inc/fonction.php");
 $idobj = $_GET['obj'];
 $inf = get_objets_par_id($idobj);
-// var_dump($inf);
 $l_cat = get_list_categorie();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Détail de l'objet</title>
     <link rel="stylesheet" href="../assets/css/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 
-<script src="../assets/css/bootstrif (empty($liste_emprunt))ap/js/bootstrap.bundle.min.js"></script>
-    <!-- Navigation -->
+<script src="../assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Navigation -->
 <nav class="navbar navbar-expand-lg bg-light shadow-sm">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="#">@emprunt</a>
@@ -31,7 +31,7 @@ $l_cat = get_list_categorie();
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link active" href="accueil.php">Home</a>
+          <a class="nav-link active" href="accueil.php">Accueil</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -47,67 +47,67 @@ $l_cat = get_list_categorie();
               </li>
             <?php } ?>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Voir tout</a></li>
+            <li><a class="dropdown-item" href="accueil.php">Voir tout</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="deconnexion.php">Deconnexion</a>
+          <a class="nav-link active" href="deconnexion.php">Déconnexion</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-    <div class="row mt-5">
-                <div class="row ms-2">
-                <div class="col-6 text-start">
-               <h1><?= $inf['nom_objet']; ?></h1>
-                </div>
-                
-                </div>
 
-                <div class="card ps-5 mb-5">
-                <div class="card-body text-start">
-                    <h5 class="card-title">De <?= $inf['nom']; ?></h5>
-                </div>
+<!-- Détail de l'objet -->
+<div class="container mt-5">
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <div class="card shadow">
                 <?php 
                 $image = !empty($inf['nom_image']) ? "../assets/images/objets/" . $inf['nom_image'] : "../assets/images/img3.jpg"; 
                 ?>
-                <img src="<?= htmlspecialchars($image) ?>" class="card-img-top" alt="Image de l'objet" style="object-fit: cover;" width=500px height=300px>
-                <!-- <img src="../assets/image/m<?= $inf['id_propriete']; ?>.jpeg" alt="..." width=500px> -->
-
+                <img src="<?= htmlspecialchars($image) ?>" class="card-img-top" alt="Image de l'objet" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h2 class="card-title"><?= htmlspecialchars($inf['nom_objet']) ?></h2>
+                    <p class="card-text">Propriétaire : <strong><?= htmlspecialchars($inf['nom']) ?></strong></p>
+                    <p class="card-text">Catégorie : <strong><?= htmlspecialchars($inf['nom_categorie']) ?></strong></p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <?php 
+    <!-- Historique des emprunts -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <?php 
             $liste_emprunt = get_info_emprunt($inf['id_objet']);
-            // var_dump($liste_emprunt);
-            if (!empty($liste_emprunt)) {
-                    ?>
-                    <table>
+            if (!empty($liste_emprunt)) { ?>
+                <h4 class="mb-3">Historique des emprunts</h4>
+                <table class="table table-bordered table-striped">
+                    <thead class="table-light">
                         <tr>
-                            <th>Date emprunt</th>
-                            <th>Date emprunt</th>
+                            <th>Date d'emprunt</th>
+                            <th>Date de retour</th>
                         </tr>
-                        <?php foreach ($liste_emprunt as $l) {?>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($liste_emprunt as $l) { ?>
                         <tr>
-                            <td><?= $l['date_emprunt']?></td>
-                            <td><?= $l['date_retour']?></td>
-
+                            <td><?= htmlspecialchars($l['date_emprunt']) ?></td>
+                            <td><?= htmlspecialchars($l['date_retour']) ?></td>
                         </tr>
                         <?php } ?>
-                    </table>
-                    <?php 
-            }
-         else{
-            ?>
-            <h4>Aucun emprunt pour le moment...</h4>
-            <?php
-        }?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <div class="alert alert-info text-center">
+                    Aucun emprunt pour le moment...
+                </div>
+            <?php } ?>
+        </div>
     </div>
+</div>
 
 </body>
 </html>
-
-
