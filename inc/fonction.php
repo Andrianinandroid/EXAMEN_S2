@@ -88,4 +88,58 @@ function get_nom_categorie($id) {
     $reponse =mysqli_fetch_assoc($envoi);
      return $reponse['nom_categorie'];
 }
+function insert_objet($id_membre, $id_categorie,$nom_objet){
+        $req = "insert into gestion_objet (id_membre,nom_objet,id_categorie) values (%d,'%s',%d)";
+        $req = sprintf($req,$id_membre,$nom_objet,$id_categorie);
+        $envoi = mysqli_query(dbconnect(),$req);
+}
+function insert_image($id_objet,$nom_image){
+    $req = "insert into gestion_images_objet (id_objet,nom_image) values (%d,'%s')";
+    $req = sprintf($req,$id_objet,$nom_image);
+    $envoi = mysqli_query(dbconnect(),$req);
+}
+
+function upload($id_categorie,$nom_objet,$id_membre){
+    $uploadDir = __DIR__ . '/../assets/uploads/';
+    $maxSize = 20 * 1024 * 1024; // 20 Mo
+    $allowedMimeTypes = ['image/jpeg', 'image/png'];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photos'])) {
+        $file = $_FILES['photos'];
+        foreach($_FILES['photos'] as $file){
+            // $file = $_FILES['fichier'];
+            if ($file['error'] !== UPLOAD_ERR_OK) {
+                die('Erreur lors de l’upload : ' . $file['error']);
+        }
+
+    if ($file['size'] > $maxSize) {
+        die('Le fichier est trop volumineux.');
+    }
+
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = finfo_file($finfo, $file['tmp_name']);
+    finfo_close($finfo);
+    if (!in_array($mime, $allowedMimeTypes)) {
+        die('Type de fichier non autorisé : ' . $mime);
+    }
+
+    $originalName = pathinfo($file['name'], PATHINFO_FILENAME);
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $newName = 'pub' . '_' . uniqid() . '.' . $extension;
+
+    if (move_uploaded_file($file['tmp_name'], $uploadDir . $newName)) {
+        echo "Fichier uploadé avec succès : ". $newName;
+    } else {
+        echo "Échec du déplacement du fichier.";
+    }
+      insert_image($id_objet,$newName);
+        }
+     
+    } else {
+        echo "Aucun fichier reçu.";
+    }
+
+    insert_objet($id_membre, $id_categorie,$nom_objet);
+    
+}
 ?>
