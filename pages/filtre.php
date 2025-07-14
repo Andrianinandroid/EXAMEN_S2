@@ -1,8 +1,13 @@
-<?php
+<?php 
 require("../inc/fonction.php");
-$objets = get_objets();
+$cat = $_GET['cat_no'];
 $l_cat = get_list_categorie();
-?><!DOCTYPE html>
+$liste = get_objets_par_categorie($cat);
+// var_dump($liste);
+?>
+
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +34,7 @@ $l_cat = get_list_categorie();
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="accueil.php">Home</a>
           </li>
-
+        
           <li class="nav-item dropdown">
             
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,10 +62,10 @@ $l_cat = get_list_categorie();
   </nav>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Liste des objets</h1>
+        <h1 class="text-center mb-4">Liste des objets dans la categorie <?= get_nom_categorie($_GET['cat_no'])?></h1>
         <div class="row">
-            <?php if (!empty($objets)) {
-                foreach ($objets as $object) { ?>
+            <?php if (!empty($liste)) {
+                foreach ($liste as $object) { ?>
                     <div class="col-md-4 mb-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">

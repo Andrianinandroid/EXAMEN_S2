@@ -20,6 +20,10 @@
                 <p>Date de naissance: <input type="date" name="naissance"></p>
                 <p><input type="text" name="nom" placeholder="Nom d'utilisateur"></p>
                 <p><input type="text" name="ville" placeholder="Ville"></p>
+                <select name="genre" id="">
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
                 <p><input type="password" name="motdepasse" placeholder="Nouveau mot de passe"></p>
             </div>            
             <div class="submit">
