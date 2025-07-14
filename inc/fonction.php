@@ -161,9 +161,58 @@ function emprunter($id_obj, $nbj, $id_mbr) {
     $req = sprintf($req,$id_obj,$id_mbr,$nbj);
     $envoi = mysqli_query(dbconnect(),$req);
 }
-
-
-// id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
+function get_emprunts($id_membre){
+    $req = "select * from gestion_emprunt where id_membre=%d";
+    $req = sprintf($req,$id_membre);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $tab =[];
+    while(  $reponse =mysqli_fetch_assoc($envoi)){
+        $tab[] =$reponse; 
+    }
+     return $tab;
+}
+function insert_etat($id_objet,$etat)
+{
+     $info_emprunts= get_info_emprunt($id_objet);
+     foreach($info_emprunts as $info){
+        $req = "insert into gestion_etat_objet(id_objet,id_emprunt,etat) values (%d,%d,'%s')";
+        $req = sprintf($req,$id_objet,$info['id_emprunt'],$etat);
+        $envoi = mysqli_query(dbconnect(),$req);
+    }
+     }
+function get_tout(){
+    $req = "select * from gestion_etat_objet";
+    $req = sprintf($req,$id_membre);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $tab =[];
+    while(  $reponse =mysqli_fetch_assoc($envoi)){
+        $tab[] =$reponse; 
+    }
+     return $tab;
+}
+function get_isa(){
+    $req = "select * from gestion_etat_objet";
+    $req = sprintf($req,$id_membre);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $tab =[];
+    while(  $reponse =mysqli_fetch_assoc($envoi)){
+        $tab[] =$reponse; 
+    }
+    $i = 0;
+    $j=0;
+    foreach($tab as $t){
+        if($t['etat']=="Bon"){
+                $i++;
+        }
+    }
+    if($t['etat']=="Mauvais"){
+        $j++;
+    }
+    $tableau[0] = $i;
+    $tableau[1] = $j;
+     return $tableau;
+}
+    // id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
 //     id_objet INT,
 //     id_membre INT,
 //     date_emprunt DATE,

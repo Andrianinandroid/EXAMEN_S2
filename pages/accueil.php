@@ -49,7 +49,9 @@ $l_cat = get_list_categorie();
                         <li><a class="dropdown-item" href="accueil.php">Voir tout</a></li>
                     </ul>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link active" href="mes_emprunts.php">Mes emprunts</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="deconnexion.php">Déconnexion</a>
                 </li>

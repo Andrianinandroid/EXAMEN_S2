@@ -5,8 +5,8 @@ require("../inc/fonction.php");
     }
     else{
         $user=get_info_member($_GET['mail'],$_GET['motdepasse']);
-        $_SESSION['utilisateur']=$user['Nom'];
-        $_SESSION['id']=$user['idMembre'];
+        $_SESSION['utilisateur']=$user['nom'];
+        $_SESSION['id']=$user['id_membre'];
         header("Location:accueil.php");
     }
 ?>

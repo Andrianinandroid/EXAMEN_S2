@@ -50,6 +50,14 @@ CREATE TABLE gestion_emprunt (
     FOREIGN KEY (id_membre) REFERENCES gestion_membre(id_membre)
 );
 
+create table gestion_etat_objet(
+    id_etat int auto_increment primary key,
+    id_objet int,
+    id_emprunt int,
+    etat varchar(30)
+);
+
+
 -- 7. Insertion de 4 membres
 INSERT INTO gestion_membre (nom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
 ('Alice', '1990-01-01', 'F', 'alice@mail.com', 'Paris', 'pass123', 'alice.jpg'),
@@ -126,4 +134,6 @@ INSERT INTO gestion_emprunt (id_objet, id_membre, date_emprunt, date_retour) VAL
 (32, 1, '2025-07-08', '2025-07-18'),
 (37, 3, '2025-07-09', '2025-07-19'),
 (40, 2, '2025-07-10', '2025-07-20');
+
+
 
