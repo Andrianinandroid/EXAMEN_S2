@@ -88,4 +88,11 @@ function get_nom_categorie($id) {
     $reponse =mysqli_fetch_assoc($envoi);
      return $reponse['nom_categorie'];
 }
+function get_objets_par_id($id){
+    $req = "select * from gestion_v_info_objet where id_objet=%d";
+    $req = sprintf($req, $id);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $reponse =mysqli_fetch_assoc($envoi);
+     return $reponse;
+}
 ?>
