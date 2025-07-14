@@ -1,0 +1,12 @@
+<?php 
+require("../inc/fonctions.php");
+    if(!verify_user($_GET['mail'],$_GET['motdepasse'])){
+        header("Location:login.php?erreur=1");
+    }
+    else{
+        $user=get_info_member($_GET['mail'],$_GET['motdepasse']);
+        $_SESSION['utilisateur']=$user['Nom'];
+        $_SESSION['id']=$user['idMembre'];
+        header("Location:accueil.php");
+    }
+?>

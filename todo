@@ -1,0 +1,10 @@
+Version 1
+    -creation de la base de donnee
+        membre 
+        categorie-objet
+        objet
+        images_objet
+        emprunt
+        
+    -insertion des donnees
+    -creation des pages
