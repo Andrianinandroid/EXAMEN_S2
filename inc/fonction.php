@@ -142,4 +142,11 @@ function upload($id_categorie,$nom_objet,$id_membre){
     insert_objet($id_membre, $id_categorie,$nom_objet);
     
 }
+function get_objets_par_id($id){
+    $req = "select * from gestion_v_info_objet where id_objet=%d";
+    $req = sprintf($req, $id);
+    $envoi = mysqli_query(dbconnect(),$req);
+    $reponse =mysqli_fetch_assoc($envoi);
+     return $reponse;
+}
 ?>

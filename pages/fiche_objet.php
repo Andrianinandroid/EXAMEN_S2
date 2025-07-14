@@ -2,7 +2,7 @@
 require("../inc/fonction.php");
 $idobj = $_GET['obj'];
 $inf = get_objets_par_id($idobj);
-var_dump($inf);
+// var_dump($inf);
 $l_cat = get_list_categorie();
 ?>
 
@@ -16,7 +16,7 @@ $l_cat = get_list_categorie();
 </head>
 <body>
 
-<script src="../assets/css/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/css/bootstrif (empty($liste_emprunt))ap/js/bootstrap.bundle.min.js"></script>
     <!-- Navigation -->
 <nav class="navbar navbar-expand-lg bg-light shadow-sm">
   <div class="container-fluid">
@@ -82,21 +82,29 @@ $l_cat = get_list_categorie();
     <div class="row">
         <?php 
             $liste_emprunt = get_info_emprunt($inf['id_objet']);
-            var_dump($liste_emprunt);
-            if (!empty($liste)) {
-                foreach ($liste as $l) {
+            // var_dump($liste_emprunt);
+            if (!empty($liste_emprunt)) {
                     ?>
                     <table>
                         <tr>
-                            <th>Emprunteur</th>
                             <th>Date emprunt</th>
                             <th>Date emprunt</th>
                         </tr>
+                        <?php foreach ($liste_emprunt as $l) {?>
+                        <tr>
+                            <td><?= $l['date_emprunt']?></td>
+                            <td><?= $l['date_retour']?></td>
+
+                        </tr>
+                        <?php } ?>
                     </table>
                     <?php 
-                }
             }
-        ?>
+         else{
+            ?>
+            <h4>Aucun emprunt pour le moment...</h4>
+            <?php
+        }?>
     </div>
 
 </body>
