@@ -64,6 +64,7 @@ $l_cat = get_list_categorie();
     <?php if (!empty($objets)) {
       foreach ($objets as $object) { 
         $image = !empty($object['nom_image']) ? "../assets/images/objets/" . $object['nom_image'] : "../assets/images/img3.jpg"; ?>
+        <a href="fiche_objet.php?obj=<?= $object['id_objet']?>">
         <div class="col-md-4 mb-4">
           <div class="card h-100 shadow-sm">
             <img src="<?= htmlspecialchars($image) ?>" class="card-img-top" alt="Image de l'objet" style="height: 200px; object-fit: cover;">
@@ -83,6 +84,7 @@ $l_cat = get_list_categorie();
             </div>
           </div>
         </div>
+        </a>
       <?php }
     } else { ?>
       <div class="col-12">
